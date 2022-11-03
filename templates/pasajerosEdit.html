@@ -6,23 +6,40 @@
 {% block body %}
 <center>
     <article>
-        <p class="animate__animated animate__pulse animate__infinite"
-        style="font-family: 'Comic Sans MS', sans-serif; font-size: 50px; ">SITU</p><br>
+        <img src="../static/icono-administrador.png" style="height: 200px; width:400px;">
     </article>        
 </center>
-<h2>Gestión de Pasajeros</h2>
+<h2>Gestión de Pasajeros SITU LOJA</h2>
         <div class="card">
             <div class="card-body">
                 <form action="" method="post" enctype ="multipart/form-data" >
-                    {% csrf_token %}
-                    {{form}}
+                    
+                    {% for field in form %}
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="col-sm-10">
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
                     <hr>
                     <div class="d-flex justify-content-center">
-                        <input type="reset" value="Cancelar" class="btn btn-secondary">
-                        &nbsp;
-                        <input type="submit" value="Editar" class="btn btn-primary">
+                        <a class="btn btn-secondary" href="{% url 'pasajeros' %}"><i class="bi-x-circle"></i> Cancelar</a>&nbsp;
+                        <button type="submit" value="Editar" class="btn btn-primary"><i class="bi-save"></i> Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
 {% endblock body %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function(){
+            $('.auto-form-bs input').addClass('form-control');
+        });
+    </script>
+{% endblock scripts %}

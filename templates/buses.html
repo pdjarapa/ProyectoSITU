@@ -1,0 +1,61 @@
+{% extends "./base.html" %}
+{% block title %}
+    Buses
+{% endblock %}
+
+{% block body %}
+<center>
+    <img src="../static/busSITU.png">
+</center>
+<div class="card">
+        <h1>Listado de Buses SITU LOJA</h1>
+        <hr>
+        <nav class="table-responsive py-2">
+            <nav class="navbar navbar-dark bg-primary ">
+            <div></div>
+            <div class="form-inline my-2 my-lg-0">
+                <a href="{% url 'busesCrear' %}"  class="btn btn-info my-2 my-sm-0">Nuevo Bus</a>
+            </div>
+        </nav>
+        <div class="table-responsive py-2">
+            <table class="table table-striped table-hover table-responsive-sa">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Numero</th>
+                        <th>Placa</th>
+                        <th>Cooperativa</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in buses %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{e.numero}}</td>
+                        <td>{{e.placa}}</td>
+                        <td>{{e.cooperativa}}</td>
+                        <td>
+                            <a href="{% url 'busesEdit' e.id %}"  class="btn btn-info"><i class="bi-pencil"></i> Editar</a>
+                            <a href="{% url 'busesEliminar' e.id %}"  class="btn btn-danger btn-delete"><i class="bi-trash"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+{% endblock body %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function(){
+            $('.btn-delete').click(function(e){
+                if(confirm('¿Desea eliminar este Bus?')){
+                    return true;
+                }
+                return false;
+            });
+        });
+    </script>
+{% endblock scripts %}
