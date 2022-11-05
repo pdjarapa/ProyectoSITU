@@ -1,0 +1,74 @@
+{% extends "./base.html" %}
+{% block title %}
+    Conductor
+{% endblock %}
+
+{% block body %}
+<center>
+    <img src="../static/busSITU.png">
+</center>
+<div class="card">
+        <h1>Listado de Conductor</h1>
+        <hr>
+        <nav class="table-responsive py-2">
+
+            <nav class="navbar navbar-dark bg-primary ">
+                <div></div>
+                <div class="form-inline my-2 my-lg-0">
+                    <a href="{% url 'conductorNuevo' %}"  class="btn btn-info my-2 my-sm-0"><i class="bi-person-plus"></i> Crear</a>
+                </div>
+        </nav>
+        <div class="table-responsive py-2">
+            <table class="table table-striped table-hover table-responsive-sa">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cedula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Telefono</th>
+                        <th>Licencia</th>
+                        <th>Placa</th>
+                        <th>Imagen</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in conductor %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{e.cedula}}</td>
+                        <td>{{e.nombre}}</td>
+                        <td>{{e.apellido}}</td>
+                        <td>{{e.telefono}}</td>
+                        <td>{{e.licencia}}</td>
+                        <td>{{e.idplaca}}</td>
+                        <td>
+                        {% load static %}
+                        <img src="{% static 'situ.png' %}" alt="Imagen no encontrada" width="65" height="50"><br>
+                        {{e.imagen}}
+                        </td>
+                        <td>{{e.correo}}</td>
+                        <td><a href="{% url 'conductorEdit' e.id %}"  class="btn btn-info">Editar</a>
+                            <a href="{% url 'conductorEliminar' e.id %}"  class="btn btn-danger btn-delete"><i class="bi-trash"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+{% endblock body %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function(){
+            $('.btn-delete').click(function(e){
+                if(confirm('¿Desea eliminar este pasajero?')){
+                    return true;
+                }
+                return false;
+            });
+        });
+    </script>
+{% endblock scripts %}

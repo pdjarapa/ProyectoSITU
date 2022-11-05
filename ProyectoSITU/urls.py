@@ -31,4 +31,12 @@ urlpatterns = [
     path('busesEliminar/<id>', busesEliminar, name='busesEliminar'),
     path('busesCrear/', busesCrear, name='busesCrear'),
     path('modelado/', modelado_view, name='modelado_view'),
+    path('conductor/', conductor, name='conductor'),
+    path('conductorEdit/<id>', conductorEdit, name='conductorEdit'),
+    path('conductorNuevo/', conductorNuevo, name='conductorNuevo'),
+    path('conductorEliminar/<id>', conductorEliminar, name='conductorEliminar'),
+    path('tarjeta/', tarjeta, name='tarjeta'),
+    path('tarjetaEdit/<id>', tarjetaEdit, name='tarjetaEdit'),
+    path('tarjetaNuevo/', tarjetaNuevo, name='tarjetaNuevo'),
+    path('tarjetaEliminar/<id>', tarjetaEliminar, name='tarjetaEliminar'),
 ]

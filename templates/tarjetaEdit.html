@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+{% block title %}
+    Tarjetas
+{% endblock %}
+
+{% block body %}
+<center>
+    <img src="../static/tarjetasSitu.png">
+</center>
+<h2>Gestión de Tarjetas SITU LOJA</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="" method="post" enctype ="multipart/form-data" >
+                    
+                    {% for field in form %}
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="col-sm-10">
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <hr>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-secondary" href="{% url 'tarjeta' %}"><i class="bi-x-circle"></i> Cancelar</a>
+                        &nbsp;
+                        <button type="submit" value="Editar" class="btn btn-primary"><i class="bi-save"></i> Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock body %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function(){
+            $('.auto-form-bs input').addClass('form-control');
+        });
+    </script>
+{% endblock scripts %}

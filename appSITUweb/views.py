@@ -90,3 +90,82 @@ def busesEliminar(request, id):
     if bus:
         bus.delete()
     return redirect(to="buses")
+
+def conductor(request):
+    data = ConductorFormulario()    
+    chofer = Conductor.objects.all()
+    if request.method == 'POST':
+        formulario = ConductorFormulario(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+    return render(request,"conductor.html",{"conductor":chofer, 'form':data})
+
+def conductorNuevo(request):
+    chofer = Conductor()
+    data = {
+        'form': ConductorFormulario(instance=chofer)
+    }
+    if request.method == 'POST':
+        formulario = ConductorFormulario(data=request.POST, instance=chofer, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="conductor")
+    return render(request, 'conductorEdit.html', data)
+
+def conductorEdit(request, id):
+    chofer = get_object_or_404(Conductor, id = id)
+    data = {
+        'form' : ConductorFormulario(instance=chofer)
+    }
+    if request.method == 'POST':
+        formulario = ConductorFormulario(data=request.POST, instance=chofer, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="conductor")
+    return render(request,'conductorEdit.html',data)
+
+def conductorEliminar(request, id):
+    chofer = get_object_or_404(Conductor, id=id)
+    if chofer:
+        chofer.delete()
+    return redirect(to="conductor")
+
+def tarjeta(request):
+    data = TarjetaFormulario()    
+    card = Tarjeta.objects.all()
+    if request.method == 'POST':
+        formulario = TarjetaFormulario(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+
+    return render(request,"tarjeta.html",{"tarjeta":card, 'form':data})
+
+def tarjetaNuevo(request):
+    card = Tarjeta()
+    data = {
+        'form': TarjetaFormulario(instance=card)
+    }
+    if request.method == 'POST':
+        formulario = TarjetaFormulario(data=request.POST, instance=card, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="tarjeta")
+    return render(request, 'tarjetaEdit.html', data)
+
+def tarjetaEdit(request, id):
+    card = get_object_or_404(Tarjeta, id = id)
+    data = {
+        'form' : TarjetaFormulario(instance=card)
+    }
+    if request.method == 'POST':
+        formulario = TarjetaFormulario(data=request.POST, instance=card, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="tarjeta")
+    return render(request,'tarjetaEdit.html',data)
+
+def tarjetaEliminar(request, id):
+    card = get_object_or_404(Tarjeta, id=id)
+    if card:
+        card.delete()
+    return redirect(to="tarjeta")

@@ -20,7 +20,7 @@ class Bus(models.Model):
 	placa = models.CharField(max_length=7, blank=False)
 	cooperativa = models.CharField(max_length=10, blank=False)
 	numero = models.DecimalField(max_digits=3, decimal_places=0)
-	idTarjeta = models.ManyToManyField(Pasajero, through='Viaje')	
+	idTarjeta = models.ManyToManyField(Pasajero, through='Viaje')
 	def __str__(self):
 		return self.placa
 
@@ -46,3 +46,14 @@ class SimularAccesoPago(models.Model):
 	tarjeta = models.ForeignKey(Tarjeta, on_delete=models.CASCADE)
 	def __str__(self):
 	  return f'Pasajero: {self.viaje.pasajero.nombre}'
+
+class Conductor(models.Model):
+	cedula = models.CharField(max_length=10, blank=False)
+	nombre = models.CharField(max_length=10, blank=False)
+	imagen = models.ImageField(upload_to='img/%Y/%m/%d/')
+	apellido = models.CharField(max_length=30)
+	email = models.EmailField()
+	licencia = models.CharField(max_length=10, blank=False)
+	idplaca = models.ForeignKey(Bus, on_delete=models.CASCADE)
+	def __str__(self):
+		return self.cedula

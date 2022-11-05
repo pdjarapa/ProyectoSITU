@@ -60,9 +60,15 @@
                                 -Bigdecimal costo
                                 -int cantidad
                                 -Datelocal fecha_viaje
-                                -String tipo                                
+                                -String tipo
                             }
                             Bus "1" --> "1..*" Viaje : realiza
+
+                            class SimularAccesoPago{
+                                -int numero
+                                -Datelocal fecha_viaje
+                                -Datelocal fecha_viaje
+                            }
                         </div>
                     </div>
                 </div>
@@ -73,5 +79,5 @@
     <h3>Programa de Maestria de Ingenieria en Software</h3>
     <h3>Desarrollo de Software en Ambientes Cloud</h3>
     <p>2022-Octubre</p>
-    <img src="../static/unlFEIRNNR2.jpg" style="height: 100px; width:300px;">
+    <img src="../static/unlFEIRNNR2.jpg">
 {% endblock body %}
